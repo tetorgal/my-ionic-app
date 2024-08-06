@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Product } from '../models/product';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,11 @@ export class ProductosService {
 
   constructor(private http: HttpClient) { }
 
-  getProducts(): Observable<any[]> {
-    return this.http.get<any[]>(this.url);
+  getProducts(): Observable<Product[]> {
+    return this.http.get<Product[]>(this.url);
+  }
+
+  editProduct(product: any): Observable<Product> {
+    return this.http.patch<Product>(`${this.url}/${product._id}`, product);
   }
 }

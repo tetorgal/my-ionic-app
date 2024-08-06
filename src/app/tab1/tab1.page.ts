@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { ProductosService } from '../productos.service';
+import { ProductosService } from '../services/productos.service';
+import { ModalEditComponent } from '../tabs/modal-edit/modal-edit.component';
 
 @Component({
   selector: 'app-tab1',
@@ -49,6 +50,32 @@ export class Tab1Page implements OnInit {
   }
 
   async edit(item: any) {
-    // Implementa la lógica del modal aquí
+    const modal = await this.modalCtrl.create({
+      component: ModalEditComponent,
+      componentProps: {
+        item
+      }
+    });
+    await modal.present();
+
+    const { data, role } = await modal.onWillDismiss();
+
+    if (role === 'confirm' && data) {
+      console.log('Editing:', data);
+      this.productService.editProduct(data).subscribe(
+        (updatedProduct) => {
+          console.log('Product updated:', updatedProduct);
+          // Aquí puedes actualizar la lista de productos si es necesario
+          this.getProducts(); // Opcional, recargar productos
+        },
+        (error) => {
+          console.error('Error updating product:', error);
+        }
+      );
+    }
+  }
+
+  delete(item: any) {
+    console.log(item);
   }
 }

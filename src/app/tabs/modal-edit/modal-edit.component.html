@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button color="medium" (click)="cancel()">Cancelar</ion-button>
+    </ion-buttons>
+    <ion-title>Editar producto</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="medium" (click)="confirm()" [strong]>Guardar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <ion-item>
+    <ion-input
+      labelPlacement="stacked"
+      label="Nombre del producto"
+      [(ngModel)]="item.name"
+      placeholder="Nombre del producto"
+    >
+    </ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input
+      labelPlacement="stacked"
+      label="Precio"
+      [(ngModel)]="item.price"
+      type="number"
+      placeholder="Precio"
+    >
+    </ion-input>
+  </ion-item>
+</ion-content>
