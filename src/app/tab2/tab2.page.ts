@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PhotoService } from '../services/photo.service';
 
 @Component({
@@ -6,11 +6,24 @@ import { PhotoService } from '../services/photo.service';
   templateUrl: 'tab2.page.html',
   styleUrls: ['tab2.page.scss']
 })
-export class Tab2Page {
-  photos: any[] = []
+export class Tab2Page implements OnInit {
+  photos: string[] = [];
 
-  constructor(private photoService: PhotoService) {
-    this.photos = this.photoService.photos
+  constructor(private photoService: PhotoService) {}
+
+  ngOnInit() {
+    this.loadStoredPhotos();
+  }
+
+  loadStoredPhotos() {
+    this.photoService.getStoredPhotos().subscribe(
+      (urls) => {
+        this.photos = urls;
+      },
+      (error) => {
+        console.error('Error fetching stored photos:', error);
+      }
+    );
   }
 
   async takePhoto() {
@@ -20,6 +33,7 @@ export class Tab2Page {
         this.photoService.uploadPhoto(photoDataUrl).subscribe(
           downloadURL => {
             console.log('Foto cargada exitosamente. Download URL:', downloadURL);
+            this.loadStoredPhotos(); // Reload photos after successful upload
           },
           error => {
             console.error('Error al cargar la foto:', error);

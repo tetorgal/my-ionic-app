@@ -28,7 +28,7 @@ export class PhotoService {
   }
 
   public uploadPhoto(photoDataUrl: string): Observable<string> {
-    const fileName = new Date().getTime() + '.jpg';
+    const fileName = new Date().getTime() + 'unidad_3.jpg';
     const filePath = `photos/${fileName}`;
     const fileRef = this.storage.ref(filePath);
     const task = fileRef.putString(photoDataUrl, 'data_url');
@@ -46,6 +46,15 @@ export class PhotoService {
     const docRef = this.firestore.collection('images').doc();
     return from(docRef.set({ downloadURL, base64 })).pipe(
       map(() => downloadURL)
+    );
+  }
+
+  public getStoredPhotos(): Observable<string[]> {
+    return this.firestore.collection('images').valueChanges().pipe(
+      map((images: any[]) => images
+        .filter(img => img.downloadURL && img.downloadURL.length > 0)
+        .map(img => img.downloadURL)
+      )
     );
   }
 }
