@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Student List</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Students</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <table class="student-table">
+        <thead>
+          <tr>
+            <th>Fecha de Creación</th>
+            <th>Estatus</th>
+            <th>Nombre Completo</th>
+            <th>Carrera</th>
+            <th>Correo Electrónico</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let student of students">
+            <td>{{ student.fechaCreacion | date:'short' }}</td> <!-- Format date -->
+            <td>{{ student.estatus ? 'Active' : 'Inactive' }}</td> <!-- Display status -->
+            <td>{{ student.nombre }} {{ student.apellido }}</td>
+            <td>{{ student.carrera }}</td>
+            <td>{{ student.correoElectronico }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

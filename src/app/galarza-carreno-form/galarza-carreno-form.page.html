@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Register Student</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Student Registration Form</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <form [formGroup]="studentForm" (ngSubmit)="onSubmit()">
+        <ion-item>
+          <ion-label position="floating">Nombre</ion-label>
+          <ion-input type="text" formControlName="nombre" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Apellido</ion-label>
+          <ion-input type="text" formControlName="apellido" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Matrícula</ion-label>
+          <ion-input type="text" formControlName="matricula" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Correo Electrónico</ion-label>
+          <ion-input type="email" formControlName="correoElectronico" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Teléfono</ion-label>
+          <ion-input type="tel" formControlName="telefono" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Carrera</ion-label>
+          <ion-input type="text" formControlName="carrera" required></ion-input>
+        </ion-item>
+
+        <ion-button expand="full" type="submit" [disabled]="!studentForm.valid">Submit</ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

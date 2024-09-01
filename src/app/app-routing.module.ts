@@ -9,6 +9,18 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+  },
+  {
+    path: 'crud-operations',
+    loadChildren: () => import('./crud-operations/crud-operations.module').then( m => m.CrudOperationsPageModule)
+  },
+  {
+    path: 'galarza-carreno-tabla',
+    loadChildren: () => import('./galarza-carreno-tabla/galarza-carreno-tabla.module').then( m => m.GalarzaCarrenoTablaPageModule)
+  },
+  {
+    path: 'galarza-carreno-form',
+    loadChildren: () => import('./galarza-carreno-form/galarza-carreno-form.module').then( m => m.GalarzaCarrenoFormPageModule)
   }
 ];
 @NgModule({

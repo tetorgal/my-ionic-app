@@ -1,0 +1,20 @@
+.student-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .student-table th,
+  .student-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #c8c8c8;
+  }
+  
+  .student-table th {
+    background-color: #c5c5c5;
+    font-weight: bold;
+  }
+  
+  .student-table tr:hover {
+    background-color: #acacac;
+  }
